@@ -1,0 +1,99 @@
+<div id="wrapper">
+
+    <!-- Sidebar wrapper-->
+    <div id="sidebar-wrapper">
+        <nav class="mainMenu">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/" class="dash-text" align="center">
+                        Mongo Scraper
+                    </a>
+                </li>
+                <li>
+                    <a href="#menu-toggle" class="dashboard" id="menu-toggle">
+                        <i class="fas fa-th-large" style="color: gold"></i>
+                        <span class="dash-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/">
+                        <i class="fas fa-home"></i>
+                        <span class="dash-text">Home</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/saved">
+                        <i class="fas fa-save"></i>
+                        <span class="dash-text">Saved Articles</span>
+                    </a>
+                </li>
+                <br>
+                <li>
+                    <a class="btn btn-danger scrape-new" id="scrape-button">
+                        <i class="fas fa-gamepad" style="color: #fff"></i>
+                        <span class="dash-text">SCRAPE NEW ARTICLES</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- /Sidebar wrapper -->
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+
+        <div class="overlay">
+            <a href="#menu-toggle" class="btn btn-secondary" id="resp-menu-toggle">
+                <i class="fas fa-bars fa-md" align="left"></i>
+            </a>
+        </div>
+
+        <div class="background-image"></div>
+        <div class="caption text-center">
+            <h1>Saved Articles</h1>
+            <p>Your Saved Articles</p>
+        </div>
+    </div>
+    <!-- /Jubotron -->
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <!-- Aritcles Inserted Here -->
+        <div class="container article">
+
+
+
+
+
+        </div>
+    </div>
+    <!-- /page-content-wrapper -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Gamespot Mongo Scraper</p>
+        </div>
+    </footer>
+    <!-- /Footer -->
+</div>
+<!-- /wrapper -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+<script href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script src="../../assets/js/saved.js"></script>
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $("#resp-menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+
