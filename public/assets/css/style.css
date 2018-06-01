@@ -1,7 +1,7 @@
 
 body {
   overflow-x: hidden;
-  background-color: #fff;
+  background-color: #333;
 }
 
 #wrapper {
@@ -205,7 +205,7 @@ a#resp-menu-toggle.btn.btn-secondary{
   position: relative;
   background-color: gold;
   padding: 8px;
-  color: #fff;
+  color: rgb(26, 41, 88);
   border-bottom: 1px #222 solid;
 }
 .panel.panel-default .panel-heading h3 {
@@ -214,6 +214,7 @@ a#resp-menu-toggle.btn.btn-secondary{
 }
 .panel-body{
   padding: 8px;
+  background: #fff;
 }
 .panel-heading .btn {
   position: absolute;
