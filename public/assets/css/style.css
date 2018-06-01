@@ -1,7 +1,7 @@
 
 body {
   overflow-x: hidden;
-  background-color: #222;
+  background-color: #fff;
 }
 
 #wrapper {
@@ -190,15 +190,48 @@ a#resp-menu-toggle.btn.btn-secondary{
   font-size: 26px;
   color: #fff;
 }
-.footer{
+#wrapper #page-content-wrapper{
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+
+}
+.panel{
+  margin-bottom: 30px;
+  padding: 0px;
+  box-shadow: 3px 3px 20px lightslategrey;
+}
+.panel-heading{
+  position: relative;
+  background-color: gold;
+  padding: 8px;
+  color: #fff;
+  border-bottom: 1px #222 solid;
+}
+.panel.panel-default .panel-heading h3 {
+  display: inline-block;
+  width: 80%;
+}
+.panel-body{
+  padding: 8px;
+}
+.panel-heading .btn {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+}
+
+
+
+/* .footer{
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: right;
-  color: #fff;
+  color: #222;
   font-size: 12px;
-}
+} */
 
 @media(min-width:768px) {
   #wrapper {
@@ -230,5 +263,11 @@ a#resp-menu-toggle.btn.btn-secondary{
   left: 0;
   z-index: auto;
   visibility: hidden;
+}
+#wrapper #page-content-wrapper{
+  width: 100%;
+
+  padding-left: 60px;
+
 }
 }

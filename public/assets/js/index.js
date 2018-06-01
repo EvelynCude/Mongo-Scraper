@@ -24,13 +24,14 @@ $(document).ready(function(){
             articlePanels.push(createPanel(articles[i]));
         }
         articleContainer.append(articlePanels);
+        console.log(JSON.stringify(articlePanels));
     }
 
     function createPanel(article){
         var panel =
             $(["<div class='panel panel-default'><div class='panel-heading'><h3>",
             article.headline,
-            "<a class='btn btn-success save'>Save Article</a></h3></div>",
+            "<a class='btn btn-success save' align='right'>Save Article</a></h3></div>",
             "<div class='panel-body'>",
             article.summary,
             "</div></div>"
@@ -54,12 +55,14 @@ $(document).ready(function(){
     function articleSave(){
         var articleToSave = $(this).parents(".panel").data();
         articleToSave.saved = true;
+        console.log(articleToSave);
 
         $.ajax({
             method: "PATCH",
-            url: "/api/headlines",
+            url: "/api/articles",
             data: articleToSave
         }).then(function(data){
+            // console.log(data);
             if(data){
                 loadPage();
             }

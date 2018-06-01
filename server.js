@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var expressHandlebars = require("express-handlebars");
 var mongoose = require("mongoose");
+var cheerio = require("cheerio");
 
 
 var PORT = process.env.PORT || 3000;
@@ -20,7 +21,8 @@ app.engine("hbs", expressHandlebars({defaultLayout: "main"}));
 
 app.set("view engine", ".hbs");
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 app.use(router);
 

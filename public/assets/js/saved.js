@@ -11,8 +11,10 @@ $(document).ready(function(){
         articleContainer.empty();
         $.get("/api/articles?saved=true").then(function(data){
             if (data && data.length){
+                console.log(data);
                 showArticles(data);
             }else{
+                console.log("no data");
                 showEmpty();
             }
         });

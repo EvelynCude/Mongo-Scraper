@@ -7,22 +7,20 @@ var scrape = function (cb) {
 
         var articles = [];
 
-        $(".media-article").each(function(i, element){
+        $(".media-body").each(function(i, element){
             var head = $(this).children(".media-title").text().trim();
             var sum = $(this).children(".media-deck").text().trim();
 
             if(head && sum){
-                var headline = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-                var summary =sum.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-
                 var dataBlock = {
-                    headline: headline,
-                    summary: summary
+                    headline: head,
+                    summary: sum
                 };
                 articles.push(dataBlock);
             }
         });
         cb(articles);
+        // console.log(articles);
     });
 };
 module.exports = scrape;
