@@ -4,7 +4,8 @@ var cheerio = require("cheerio");
 var scrape = function (cb) {
     request("https://www.gamespot.com/", function(err, res, body){
         var $ = cheerio.load(body);
-
+    console.log(err);
+    console.log(res.statusCode);
         var articles = [];
 
         $(".media-body").each(function(i, element){
