@@ -29,9 +29,12 @@ $(document).ready(function(){
 
     function createPanel(article){
         var panel =
-            $(["<div class='panel panel-default'><div class='panel-heading'><h3>",
+            $(["<div class='panel panel-default'><div class='panel-heading'><a target='_blank' href='",
+            article.link,
+            "'<h2 class='headline'>",
             article.headline,
-            "<a class='btn btn-success save' align='right'>Save Article</a></h3></div>",
+            "</h2></a>",
+            "<a class='btn btn-success save' align='right'>Save Article</a></div>",
             "<div class='panel-body'>",
             article.summary,
             "</div></div>"

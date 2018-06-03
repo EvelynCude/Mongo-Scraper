@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(router);
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/afternoon-wildwood-32656";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/headlines";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB

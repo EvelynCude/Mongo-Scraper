@@ -47,7 +47,7 @@ $(document).ready(function(){
         $(["<div class='alert alert-warning text-center'>",
         "<h3>Looks like we don't have any saved articles.</h3></div>",
         "<div class='panel panel-default'><div class='panel-heading text-center'>",
-        "<h4>Would you like to browse available articles?</h3></div>",
+        "<h4>Would you like to browse available articles?</h4></div>",
         "<div class='panel-body text-center'><h4>",
         "<a href='/'>Browse Articles</a></h4></div></div>"
         ].join(""));

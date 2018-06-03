@@ -159,6 +159,7 @@ a#resp-menu-toggle.btn.btn-secondary{
   height: 300px;
   width: 100%;
   padding: 0;
+  box-shadow: 10px 5px 20px 2px #000;
 }
 .jumbotron .overlay{
   position: absolute;
@@ -204,16 +205,18 @@ a#resp-menu-toggle.btn.btn-secondary{
 .panel-heading{
   position: relative;
   background-color: gold;
-  padding: 8px;
+  padding: 15px;
   color: rgb(26, 41, 88);
-  border-bottom: 1px #222 solid;
+  font-size: 34px;
+  font-weight: 500;
 }
-.panel.panel-default .panel-heading h3 {
+.panel.panel-default .panel-heading .headline {
   display: inline-block;
   width: 80%;
 }
 .panel-body{
-  padding: 8px;
+  padding: 15px;
+  font-size: 16px;
   background: #fff;
 }
 .panel-heading .btn {
