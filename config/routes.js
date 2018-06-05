@@ -47,7 +47,6 @@ module.exports = function(router){
     router.patch("/api/articles", function(req, res){
         articlesController.update(req.body, function(err, data){
             res.json(data);
-            console.log(data);
         });
     });
     router.get("/api/notes/:article_id?", function(req, res){

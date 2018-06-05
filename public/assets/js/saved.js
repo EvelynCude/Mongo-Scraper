@@ -1,9 +1,9 @@
 $(document).ready(function(){
     var articleContainer = $(".article-container");
-    $(document).on("click", ".btn.delete", articleDelete);
-    $(document).on("click", ".btn.notes", articleNotes);
-    $(document).on("click", ".btn.save", noteSave);
-    $(document).on("click", ".btn.note-delete", noteDelete);
+    $(document).on("click", ".delete", articleDelete);
+    $(document).on("click", ".notes", articleNotes);
+    $(document).on("click", ".save", noteSave);
+    $(document).on("click", ".note-delete", noteDelete);
 
     loadPage();
 
@@ -29,11 +29,18 @@ $(document).ready(function(){
     }
 
     function createPanel(article){
+        console.log(article.headline);
         var panel =
-            $(["<div class='panel panel-default'><div class='panel-heading'><h3>",
-            article.headline,
-            "<a class='btn btn-danger delete'>Delete</a>",
-            "<a class='btn btn-primary notes'>Notes</a></h3></div>",
+            $(["<div class='panel panel-default'><div class='panel-heading'><a target='_blank' href='",
+                article.link,
+                "'<h2 class='headline'>",
+                article.headline,
+                "</h2></a>",
+
+            // $(["<div class='panel panel-default'><div class='panel-heading'><h3>",
+            // article.headline,
+            "<a class='btn btn-danger note-delete'>Delete</a>",
+            "<a class='btn btn-primary notes'>Notes</a></div>",
             "<div class='panel-body'>",
             article.summary,
             "</div></div>"
@@ -105,16 +112,18 @@ $(document).ready(function(){
                 message: modalText,
                 closeButton: true
             });
+            bootbox.dialog.modal('show');
             var noteData ={
                 _id: currentArticle._id,
                 notes: data || []
             };
-            $(".btn.save").data("article", noteData);
+            $(".save").data("article", noteData);
             notesList(noteData);
         });
     }
 
     function noteSave(){
+        alert("notesave clicked");
         var noteData;
         var newNote = $(".bootbox-body textarea").val().trim();
 

@@ -24,7 +24,7 @@ $(document).ready(function(){
             articlePanels.push(createPanel(articles[i]));
         }
         articleContainer.append(articlePanels);
-        console.log(JSON.stringify(articlePanels));
+        // console.log(JSON.stringify(articlePanels));
     }
 
     function createPanel(article){
@@ -58,14 +58,12 @@ $(document).ready(function(){
     function articleSave(){
         var articleToSave = $(this).parents(".panel").data();
         articleToSave.saved = true;
-        console.log(articleToSave);
 
         $.ajax({
-            method: "PATCH",
+            method: "patch",
             url: "/api/articles",
             data: articleToSave
         }).then(function(data){
-            // console.log(data);
             if(data){
                 loadPage();
             }

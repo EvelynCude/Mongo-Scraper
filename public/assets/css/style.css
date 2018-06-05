@@ -13,7 +13,7 @@ body {
 }
 
 #wrapper.toggled {
-  padding-left: 250px;
+  padding-left: 255px;
 }
 #sidebar-wrapper:hover .dash-text{
     opacity: 1;
@@ -80,7 +80,7 @@ a#resp-menu-toggle.btn.btn-secondary{
 
 #wrapper.toggled #page-content-wrapper {
   position: absolute;
-  margin-right: -250px;
+  margin-right: -255px;
 }
 
 .sidebar-nav {
@@ -224,6 +224,11 @@ a#resp-menu-toggle.btn.btn-secondary{
   top: 8px;
   right: 20px;
 }
+.panel-heading .btn-danger {
+  position: absolute;
+  top: 8px;
+  right: 100px;
+}
 
 
 
@@ -242,13 +247,13 @@ a#resp-menu-toggle.btn.btn-secondary{
     padding-left: 0;
   }
   #wrapper.toggled {
-    padding-left: 250px;
+    padding-left: 255px;
   }
   #sidebar-wrapper {
     width: 50px;
   }
   #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+    width: 255px;
   }
   #page-content-wrapper {
     padding: 20px;

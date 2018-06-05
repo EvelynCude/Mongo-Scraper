@@ -26,10 +26,11 @@ module.exports = {
         })
         .exec(function(err,doc){
             cb(doc);
+            
         });
     },
     update: function(query, cb){
-        Article.update({_id: query.id},{
+        Article.update({_id: query._id},{
             $set: query
         }, {}, cb);
     }

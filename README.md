@@ -1,2 +1,2 @@
 # Mongo-Scraper
-Article Scraper using Mongo
+A web app that lets users view and leave comments on the latest news, scraped from the Kotaku PC-Gaming website using Cheerio and Mongoose.
