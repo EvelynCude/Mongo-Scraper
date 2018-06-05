@@ -1,81 +1,94 @@
-$(document).ready(function(){
+$(document).ready(function () {
     var articleContainer = $(".article-container");
-    $(document).on("click", ".delete", articleDelete);
-    $(document).on("click", ".notes", articleNotes);
-    $(document).on("click", ".save", noteSave);
-    $(document).on("click", ".note-delete", noteDelete);
 
-    loadPage();
+    $(document).on("click", ".btn.delete", handleArticleDelete);
+    $(document).on("click", ".btn.notes", handleArticleNotes);
+    $(document).on("click", ".btn.save", handleNoteSave);
+    $(document).on("click", ".btn.note-delete", handleNoteDelete);
 
-    function loadPage(){
+    initPage();
+
+    function initPage() {
         articleContainer.empty();
-        $.get("/api/articles?saved=true").then(function(data){
-            if (data && data.length){
-                console.log(data);
-                showArticles(data);
-            }else{
-                console.log("no data");
-                showEmpty();
+        $.get("/api/articles?saved=true").then(function (data) {
+            if (data && data.length) {
+                renderArticles(data);
+            }
+            else {
+                renderEmpty();
             }
         });
     }
 
-    function showArticles(articles){
+    function renderArticles(articles) {
         var articlePanels = [];
-        for (var i=0; i<articles.length; i++){
+        for (var i = 0; i < articles.length; i++) {
             articlePanels.push(createPanel(articles[i]));
         }
         articleContainer.append(articlePanels);
     }
 
-    function createPanel(article){
-        console.log(article.headline);
-        var panel =
-            $(["<div class='panel panel-default'><div class='panel-heading'><a target='_blank' href='",
-                article.link,
-                "'<h2 class='headline'>",
+    function createPanel(article) {
+        var panel = $(
+            [
+                "<div class='panel panel-default'>",
+                "<div class='panel-heading'>",
+                "<h3>",
+                "<a class='article-link' target='_blank' href='" + article.url + "'>",
                 article.headline,
-                "</h2></a>",
-
-            // $(["<div class='panel panel-default'><div class='panel-heading'><h3>",
-            // article.headline,
-            "<a class='btn btn-danger note-delete'>Delete</a>",
-            "<a class='btn btn-primary notes'>Notes</a></div>",
-            "<div class='panel-body'>",
-            article.summary,
-            "</div></div>"
-            ].join(""));
+                "</a>",
+                "<a class='btn btn-danger delete'>",
+                "Delete",
+                "</a>",
+                "<a class='btn btn-info notes'>Notes</a>",
+                "</h3>",
+                "</div>",
+                "<div class='panel-body'>",
+                article.summary,
+                "</div>",
+                "</div>"
+            ].join("")
+        );
         panel.data("_id", article._id);
         return panel;
     }
 
-    function showEmpty(){
-        var emptyModal =
-        $(["<div class='alert alert-warning text-center'>",
-        "<h3>Looks like we don't have any saved articles.</h3></div>",
-        "<div class='panel panel-default'><div class='panel-heading text-center'>",
-        "<h4>Would you like to browse available articles?</h4></div>",
-        "<div class='panel-body text-center'><h4>",
-        "<a href='/'>Browse Articles</a></h4></div></div>"
-        ].join(""));
-        articleContainer.append(emptyModal);
+    function renderEmpty() {
+        var emptyAlert = $(
+            [
+                "<div class='alert alert-warning text-center'>",
+                "<h4>Uh Oh. Looks like we don't have any saved articles.</h4>",
+                "</div>",
+                "<div class='panel panel-default'>",
+                "<div class='panel-heading text-center'>",
+                "<h3>Would You Like to Browse Available Articles?</h3>",
+                "</div>",
+                "<div class='panel-body text-center'>",
+                "<h4><a href='/'>Browse Articles</a></h4>",
+                "</div>",
+                "</div>"
+            ].join("")
+        );
+        articleContainer.append(emptyAlert);
     }
 
-    function notesList(data){
+    function renderNotesList(data) {
         var notesToRender = [];
         var currentNote;
-        if (!data.notes.length){
-            currentNote = [
-                "<li class='list-group-item'>No notes for this article yet.</li>"
-            ].join("");
+        if (!data.notes.length) {
+            currentNote = ["<li class='list-group-item'>", "No notes for this article yet.", "</li>"].join("");
             notesToRender.push(currentNote);
-        }else{
-            for (var i=0; i<data.notes.length; i++){
-                currentNote =$([
-                    "li class='list-group-item note'>",
-                    data.notes[i].noteText,
-                    "<button class='btn btn-danger note-delete'>x</button></li>"
-                ].join(""));
+        }
+        else {
+            for (var i = 0; i < data.notes.length; i++) {
+                currentNote = $(
+                    [
+                        "<li class='list-group-item note'>",
+                        data.notes[i].noteText,
+                        "<button class='btn btn-danger note-delete'>x</button>",
+                        "</li>"
+                    ].join("")
+                );
                 currentNote.children("button").data("_id", data.notes[i]._id);
                 notesToRender.push(currentNote);
             }
@@ -83,68 +96,68 @@ $(document).ready(function(){
         $(".note-container").append(notesToRender);
     }
 
-
-
-    function articleDelete(){
+    function handleArticleDelete() {
         var articleToDelete = $(this).parents(".panel").data();
         $.ajax({
             method: "DELETE",
             url: "/api/articles/" + articleToDelete._id
-        }).then(function(data){
-            if (data){
-                loadPage();
+        }).then(function (data) {
+            if (data.ok) {
+                initPage();
             }
         });
     }
 
-    function articleNotes(){
+    function handleArticleNotes() {
         var currentArticle = $(this).parents(".panel").data();
-        $.get("/api/notes/" + currentArticle._id).then(function(data){
+        $.get("/api/notes/" + currentArticle._id).then(function (data) {
             var modalText = [
-                "<div class='container-fluid text center'><h4>Notes for article: ",
+                "<div class='container-fluid text-center'>",
+                "<h4>Notes For Article: ",
                 currentArticle._id,
-                "</h4><hr />",
-                "<ul class='list-group note-container'></ul>",
+                "</h4>",
+                "<hr />",
+                "<ul class='list-group note-container'>",
+                "</ul>",
                 "<textarea placeholder='New Note' rows='4' cols='60'></textarea>",
-                "<button class='btn btn-primary save'>Save Note</button></div>"
+                "<button class='btn btn-success save'>Save Note</button>",
+                "</div>"
             ].join("");
             bootbox.dialog({
                 message: modalText,
                 closeButton: true
             });
-            bootbox.dialog.modal('show');
-            var noteData ={
+            var noteData = {
                 _id: currentArticle._id,
                 notes: data || []
             };
-            $(".save").data("article", noteData);
-            notesList(noteData);
+            $(".btn.save").data("article", noteData);
+
+            renderNotesList(noteData);
         });
     }
 
-    function noteSave(){
-        alert("notesave clicked");
+    function handleNoteSave() {
         var noteData;
         var newNote = $(".bootbox-body textarea").val().trim();
-
-        if(newNote){
+        if (newNote) {
             noteData = {
                 _id: $(this).data("article")._id,
                 noteText: newNote
             };
-            $.post("/api/notes", noteData).then(function(){
+            $.post("/api/notes", noteData).then(function () {
                 bootbox.hideAll();
             });
         }
     }
 
-    function noteDelete(){
+    function handleNoteDelete() {
         var noteToDelete = $(this).data("_id");
         $.ajax({
-            url:"/api/notes/" + noteToDelete,
+            url: "/api/notes/" + noteToDelete,
             method: "DELETE"
-        }).then(function(){
+        }).then(function () {
             bootbox.hideAll();
         });
     }
-})
+});

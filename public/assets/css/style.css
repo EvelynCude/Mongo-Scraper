@@ -214,6 +214,10 @@ a#resp-menu-toggle.btn.btn-secondary{
   display: inline-block;
   width: 80%;
 }
+.panel.panel-default .panel-heading h3 {
+  display: inline-block;
+  width: 80%;
+}
 .panel-body{
   padding: 15px;
   font-size: 16px;
@@ -229,7 +233,26 @@ a#resp-menu-toggle.btn.btn-secondary{
   top: 8px;
   right: 100px;
 }
+.article-link{
+  width: 80%;
+}
+textarea{
+  border: none;
+  padding: 10px;
+  overflow: auto;
+  width: 100%;
+  margin: 15px 0;
+}
 
+.list-group-item{
+  margin-bottom: 10px;
+}
+.bootbox-body .btn-danger {
+  float: right;
+  line-height: 1.2;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
 
 
 /* .footer{

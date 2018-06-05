@@ -10,7 +10,7 @@ module.exports = {
     save: function(data, cb){
         var newNote = {
             _headlineId: data._id,
-            date: makeDate(),
+            date: createDate(),
             noteText: data.noteText
         };
         Note.create(newNote, function (err, doc){
